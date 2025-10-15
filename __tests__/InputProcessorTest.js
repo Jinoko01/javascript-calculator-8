@@ -3,13 +3,13 @@ import InputProcessor from '../src/entities/InputProcessor.js';
 describe('InputProcessor 테스트', () => {
   it('사용자가 입력한 문자열을 처리한다.', () => {
     const inputs = ['1,2,3', '//;\n1;2;3'];
+    const outputs = [6, 6];
 
     const inputProcessor = new InputProcessor();
-    const process = jest.spyOn(inputProcessor, 'processInput');
 
-    inputs.forEach((input) => {
-      inputProcessor.processInput(input);
-      expect(process).toHaveBeenCalledWith(input);
+    inputs.forEach((input, index) => {
+      const result = inputProcessor.processInput(input);
+      expect(result).toEqual(outputs[index]);
     });
   });
 
