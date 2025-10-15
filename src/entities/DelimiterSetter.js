@@ -21,21 +21,21 @@ export default class DelimiterSetter {
 
   setCustomDelimiter(input) {
     const start = input.indexOf('//');
-    const end = input.indexOf('\n');
+    const end = input.indexOf('\\n');
 
     this.validateSetting(start, end);
 
-    const character = input.slice(2, end);
+    const character = input.slice(start + 2, end);
 
     this.validateLength(character);
     this.validateCharacter(character);
 
     this.delimiter.push(character);
-    return input.slice(end + 1);
+    return input.slice(end + 2);
   }
 
   validateSetting(start, end) {
-    const isValidSetting = start !== -1 && end !== -1 && start < end;
+    const isValidSetting = start === 0 && end !== -1 && end > start + 2;
 
     if (!isValidSetting) {
       throw new Error(ERROR_MESSAGE.INVALID_CUSTOM_DELIMITER_SETTING);
@@ -44,10 +44,7 @@ export default class DelimiterSetter {
 
   validateLength(character) {
     if (character.length !== 1) {
-      throw new Error(
-        character,
-        ERROR_MESSAGE.INVALID_CUSTOM_DELIMITER_SETTING_LENGTH
-      );
+      throw new Error(ERROR_MESSAGE.INVALID_CUSTOM_DELIMITER_SETTING_LENGTH);
     }
   }
 
