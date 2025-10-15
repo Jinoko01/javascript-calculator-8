@@ -17,7 +17,11 @@ describe('Parser 테스트', () => {
   });
 
   it('split 메소드는 구분자 정보를 기반으로 문자열을 나눠 숫자 배열을 반환한다.', () => {
-    const inputs = ['1,2,3', '//;\n1;2;3', '//@\n1@2@3'];
+    const inputs = [
+      ['1,2,3', [',', ':']],
+      ['1;2;3', [',', ':', ';']],
+      ['1@2@3', [',', ':', '@']],
+    ];
     const returns = [
       [1, 2, 3],
       [1, 2, 3],
@@ -26,8 +30,8 @@ describe('Parser 테스트', () => {
 
     const parser = new Parser();
 
-    inputs.forEach((input, index) => {
-      expect(parser.split(input)).toEqual(returns[index]);
+    inputs.forEach(([input, delimiter], index) => {
+      expect(parser.split(input, delimiter)).toEqual(returns[index]);
     });
   });
 });
