@@ -8,7 +8,7 @@ class App {
     const inputProcessor = new InputProcessor();
     const result = inputProcessor.processInput(input);
 
-    Console.print(result);
+    Console.print(`결과 : ${result}`);
   }
 }
 
