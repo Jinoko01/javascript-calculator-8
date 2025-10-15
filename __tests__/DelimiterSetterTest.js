@@ -74,7 +74,7 @@ describe('DelimiterSetter 에러 테스트', () => {
     const delimiterSetter = new DelimiterSetter();
 
     inputs.forEach((input) => {
-      expect(delimiterSetter.setDelimiter(input)).toThrow();
+      expect(() => delimiterSetter.setDelimiter(input)).toThrow();
     });
   });
 });
