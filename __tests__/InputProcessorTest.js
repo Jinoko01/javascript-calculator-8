@@ -1,4 +1,4 @@
-import InputProcessor from '../src/entities/InputProcessor';
+import InputProcessor from '../src/entities/InputProcessor.js';
 
 describe('InputProcessor 테스트', () => {
   it('사용자가 입력한 문자열을 처리한다.', () => {
@@ -16,5 +16,14 @@ describe('InputProcessor 테스트', () => {
   it('빈 문자열을 입력할 경우 에러를 발생시킨다.', () => {
     const inputProcessor = new InputProcessor();
     expect(() => inputProcessor.processInput('')).toThrow();
+  });
+
+  it('문자열이 아닌 경우 에러를 발생시킨다.', () => {
+    const inputs = [123, true, null, undefined, {}, []];
+    const inputProcessor = new InputProcessor();
+
+    inputs.forEach((input) => {
+      expect(() => inputProcessor.processInput(input)).toThrow();
+    });
   });
 });
