@@ -1,4 +1,5 @@
-import Calculator from './Calculator';
+import Calculator from './Calculator.js';
+import { ERROR_MESSAGE } from '../data/messages.js';
 
 export default class InputProcessor {
   constructor() {
@@ -6,6 +7,24 @@ export default class InputProcessor {
   }
 
   processInput(input) {
-    this.calculator.calculate(input);
+    this.validateInput(input);
+    return this.calculator.calculate(input);
+  }
+
+  validateInput(input) {
+    this.validateType(input);
+    this.validateContent(input);
+  }
+
+  validateType(input) {
+    if (typeof input !== 'string') {
+      throw new Error(ERROR_MESSAGE.INVALID_TYPE);
+    }
+  }
+
+  validateContent(input) {
+    if (input === '') {
+      throw new Error(ERROR_MESSAGE.INPUT_EMPTY_STRING);
+    }
   }
 }
