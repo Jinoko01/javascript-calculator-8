@@ -9,6 +9,7 @@ export default class Calculator {
 
   calculate(input) {
     const arr = this.parse(input);
+    return this.add(arr);
   }
 
   parse(input) {
