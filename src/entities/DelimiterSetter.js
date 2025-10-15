@@ -7,14 +7,16 @@ export default class DelimiterSetter {
   }
 
   setDelimiter(input) {
+    let newInput = input;
+
     if (!REGEX.NUMBER.test(input[0])) {
-      this.setCustomDelimiter(input);
+      newInput = this.setCustomDelimiter(input);
     }
 
     const delimiter = [...this.delimiter];
     this.delimiter = [',', ':'];
 
-    return delimiter;
+    return [newInput, delimiter];
   }
 
   setCustomDelimiter(input) {
@@ -29,6 +31,7 @@ export default class DelimiterSetter {
     this.validateCharacter(character);
 
     this.delimiter.push(character);
+    return input.slice(end + 1);
   }
 
   validateSetting(start, end) {
