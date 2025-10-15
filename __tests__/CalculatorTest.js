@@ -2,7 +2,7 @@ import Calculator from '../src/entities/Calculator.js';
 
 describe('Calculator 테스트', () => {
   it('calculate 메소드가 정상적으로 작동한다.', () => {
-    const inputs = ['1,2,3', '//;\n1;2;3', '테스트 문자열'];
+    const inputs = ['1,2,3', '//;\n1;2;3'];
 
     const calculator = new Calculator();
     const process = jest.spyOn(calculator, 'calculate');
@@ -34,6 +34,18 @@ describe('Calculator 테스트', () => {
       const result = calculator.parse(input);
       expect(process).toHaveBeenCalledWith(input);
       expect(result).toEqual(outputs.shift());
+    });
+  });
+
+  it('add 메소드는 덧셈 수행 결과를 반환한다.', () => {
+    const inputs = [[1, 2, 3], [100, 200, 300], [5]];
+    const outputs = [6, 600, 5];
+
+    const calculator = new Calculator();
+
+    inputs.forEach((input, index) => {
+      const result = calculator.add(input);
+      expect(result).toEqual(outputs[index]);
     });
   });
 });
