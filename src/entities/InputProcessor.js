@@ -7,6 +7,10 @@ export default class InputProcessor {
   }
 
   processInput(input) {
+    if (input === '') {
+      return 0;
+    }
+
     this.validateInput(input);
     return this.calculator.calculate(input);
   }
