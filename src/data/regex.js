@@ -1,4 +1,4 @@
 export const REGEX = Object.freeze({
-  NUMBER: /^\d+$/,
+  NUMBER: /^\d+(\.\d+)?$/,
   WHITESPACE: /\s/,
 });
