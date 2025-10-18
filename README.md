@@ -87,9 +87,34 @@ Output: [ERROR] 구분자가 아닌 문자가 포함되어 있습니다.
 
 프로그램의 흐름을 이해하기 위해 도메인 설계를 먼저 진행하였습니다.
 
+```mermaid
+flowchart LR
+  IO["I/O"] --> Check["입력 문자열 확인"]
+  Check --> Set["커스텀 구분자 설정"]
+  Set --> Parse["문자열 파싱"]
+  Parse --> Split["문자열 분리"]
+  Split --> Add["덧셈 계산"]
+```
+
 ### 객체 책임 할당
 
 각 도메인의 역할을 수행해줄 객체들을 만들고 객체에 책임을 할당하였습니다.
+
+```mermaid
+flowchart LR
+  IP["InputProcessor"]
+  Calc["Calculator"]
+  Add["AddOperator"]
+  Parser["Parser"]
+  DS["DelimiterSetter"]
+  Splitter["Splitter"]
+
+  IP -- "calculate" --> Calc
+  Calc -- "add" --> Add
+  Calc -- "parse" --> Parser
+  Parser -- "setDelimiter" --> DS
+  Parser -- "split" --> Splitter
+```
 
 ## 테스트
 
