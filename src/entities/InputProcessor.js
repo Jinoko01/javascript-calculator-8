@@ -17,18 +17,11 @@ export default class InputProcessor {
 
   validateInput(input) {
     this.validateType(input);
-    this.validateContent(input);
   }
 
   validateType(input) {
     if (typeof input !== 'string') {
       throw new Error(ERROR_MESSAGE.INVALID_TYPE);
-    }
-  }
-
-  validateContent(input) {
-    if (input === '') {
-      throw new Error(ERROR_MESSAGE.INPUT_EMPTY_STRING);
     }
   }
 }
