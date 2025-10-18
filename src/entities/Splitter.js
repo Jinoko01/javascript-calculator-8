@@ -1,20 +1,23 @@
 import { ERROR_MESSAGE } from '../data/messages.js';
-import { REGEX } from '../data/regex.js';
 
 export default class Splitter {
   split(input, delimiter) {
-    const escaped = delimiter.map((s) =>
-      s.replace(/[-\\^$*+?.()|[\]{}]/g, '\\$&')
-    );
-    const delimiterRegex = new RegExp(`(?:${escaped.join('|')})`, 'g');
+    const delimiterRegex = this.getEscapedDelimiters(delimiter);
     const result = input.split(delimiterRegex);
 
     result.forEach((num) => {
-      if (!REGEX.NUMBER.test(num)) {
+      if (Number.isNaN(Number(num)) || num === '') {
         throw new Error(ERROR_MESSAGE.INVALID_NUMBER);
       }
     });
 
     return result.map(Number);
+  }
+
+  getEscapedDelimiters(delimiter) {
+    const escaped = delimiter.map((s) =>
+      s.replace(/[-\\^$*+?.()|[\]{}]/g, '\\$&')
+    );
+    return new RegExp(`(?:${escaped.join('|')})`, 'g');
   }
 }
