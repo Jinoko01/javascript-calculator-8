@@ -9,7 +9,7 @@ export default class DelimiterSetter {
   setDelimiter(input) {
     let newInput = input;
 
-    if (!REGEX.NUMBER.test(input[0])) {
+    if (!REGEX.NUMBER.test(input[0]) && input[0] !== '-') {
       newInput = this.setCustomDelimiter(input);
     }
 
