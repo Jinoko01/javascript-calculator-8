@@ -11,4 +11,5 @@ export const ERROR_MESSAGE = Object.freeze({
   INVALID_CUSTOM_DELIMITER_SETTING_CONTENT: `${ERROR_PREFIX}커스텀 구분자는 숫자나 공백을 사용할 수 없습니다.`,
   INVALID_CUSTOM_DELIMITER_SETTING_BASE_CHARACTER: `${ERROR_PREFIX}기본 구분자는 커스텀 구분자로 설정할 수 없습니다.`,
   INVALID_NUMBER: `${ERROR_PREFIX}구분자가 아닌 문자가 포함되어 있습니다.`,
+  NOT_IMPLEMENT_OPERATOR_METHOD: `${ERROR_PREFIX}Operator의 메소드가 구현되지 않았습니다.`,
 });

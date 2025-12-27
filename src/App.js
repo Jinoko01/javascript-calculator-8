@@ -1,15 +1,14 @@
-import { Console } from '@woowacourse/mission-utils';
-import InputProcessor from './entities/InputProcessor.js';
-import { SYSTEM_MESSAGE } from './data/messages.js';
+import CalculatorController from './controller/CalculatorController.js';
+import InputView from './view/InputView.js';
+import OutputView from './view/OutputView.js';
 
 class App {
   async run() {
-    const input = await Console.readLineAsync(SYSTEM_MESSAGE.INPUT);
-
-    const inputProcessor = new InputProcessor();
-    const result = inputProcessor.processInput(input);
-
-    Console.print(`결과 : ${result}`);
+    const controller = new CalculatorController({
+      inputView: new InputView(),
+      outputView: new OutputView(),
+    });
+    await controller.calculate();
   }
 }
 
